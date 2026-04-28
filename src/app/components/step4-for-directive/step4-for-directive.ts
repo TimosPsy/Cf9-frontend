@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IPerson } from '../../shared/interfaces/person';
+import { Step3PersonTableInput } from '../step3-person-table-input/step3-person-table-input';
 
 @Component({
   selector: 'app-step4-for-directive',
-  imports: [],
+  imports: [Step3PersonTableInput],
   templateUrl: './step4-for-directive.html',
   styleUrl: './step4-for-directive.css',
 })

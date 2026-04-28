@@ -9,4 +9,5 @@ import { IPerson } from '../../shared/interfaces/person';
 })
 export class Step3PersonTableInput {
   @Input() person: IPerson | undefined;
+  @Input() step: number | undefined;
 }

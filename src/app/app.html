@@ -1,3 +1,5 @@
+@if (!doNotShowComponents) {
+
 <h1>My Angular App</h1>
 <table class="table table-bordered w-50">
   <caption class="caption-top fw-bold bg-primary text-center">User Details</caption>
@@ -20,7 +22,22 @@
 <!-- Step 3 input variable-->
 
 <div class="d-flex gap-5 text-nowrap">
-  <app-step3-person-table-input [person]="Person1"></app-step3-person-table-input>
-  <app-step3-person-table-input></app-step3-person-table-input>
-  <app-step3-person-table-input [person]="Person2"></app-step3-person-table-input>
+  <app-step3-person-table-input [person]="Person1" [step]="3"></app-step3-person-table-input>
+  <app-step3-person-table-input [step]="3"></app-step3-person-table-input>
+  <app-step3-person-table-input [person]="Person2" [step]="3"></app-step3-person-table-input>
 </div>
+
+<!-- Step 4 for directive example -->
+<div>
+  <h3>From Step 4</h3>
+  <app-step4-for-directive></app-step4-for-directive>
+</div>
+
+<!--Step 5 Event Bind-->
+<div>
+  <h3>From step 5</h3>
+  <app-step5-event-bind></app-step5-event-bind>
+</div>
+} @else {
+<router-outlet></router-outlet>
+}

@@ -1,1 +1,7 @@
-<p>step4-for-directive works!</p>
+<h4>{{'@for'}} Directive Example</h4>
+
+<div class="d-flex flex-wrap text-nowrap gap-2">
+  @for (p of persons; track p){
+    <app-step3-person-table-input [person]="p" [step]="4"></app-step3-person-table-input>
+  }
+</div>
