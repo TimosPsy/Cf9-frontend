@@ -38,6 +38,13 @@
   <h3>From step 5</h3>
   <app-step5-event-bind></app-step5-event-bind>
 </div>
-} @else {
-<router-outlet></router-outlet>
+} 
+@else {
+  <div class="container mt-2">
+    <div class="d-flex flex-column gap-2">
+      <app-navbar></app-navbar>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
 }
