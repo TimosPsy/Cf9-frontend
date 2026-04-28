@@ -1,0 +1,36 @@
+<h1>STEP 2 Person Table</h1>
+
+<!-- <table class="table table-bordered w-50">
+  <tr>
+    <td class="fw-semibold">First Name</td>
+    <td>{{person!.firstname}}</td>
+  </tr>
+  <tr>
+    <td class="fw-semibold">Last Name</td>
+    <td>{{person!.lastname}}</td>
+  </tr>
+  <tr>
+    <td class="fw-semibold">Email</td>
+    <td>{{person!.email}}</td>
+  </tr>
+</table> -->
+
+@if(!person) {
+    <div class="alert alert-danger text-center">No person details</div>
+} @else {
+ <table class="table table-bordered w-50">
+   <tr>
+     <td class="fw-semibold">First Name</td>
+     <td>{{person.firstname}}</td>
+   </tr>
+   <tr>
+     <td class="fw-semibold">Last Name</td>
+     <td>{{person.lastname}}</td>
+   </tr>
+   <tr>
+     <td class="fw-semibold">Email</td>
+     <td>{{person.email}}</td>
+   </tr>
+ </table>
+}
+
