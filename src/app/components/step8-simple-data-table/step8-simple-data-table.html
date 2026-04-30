@@ -8,7 +8,7 @@
   </thead>
   <tbody>
     @for (row of data; track row){
-      <tr class="align-middle">
+      <tr class="align-middle" (dblclick)="onPersonClicked(row)">
         <td>{{row.firstname}}</td>
         <td>{{row.lastname}}</td>
         <td>{{row.email}}</td>
