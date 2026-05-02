@@ -1,0 +1,37 @@
+<div class="d-flex flex-column">
+  <h5>New Person Form</h5>
+  <form [formGroup]="form" class="d-flex flex-column">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" formControlName="firstname">
+      <mat-error>First Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" formControlName="lastname">
+      <mat-error>Last Name is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email">
+      <mat-error>Email is required or invalid</mat-error>
+    </mat-form-field>
+  </form>
+
+  <button
+    mat-flat-button
+    color="primary"
+    [disabled]="form.invalid"
+    (click) = 'onSubmit()'
+  >
+    Submit
+  </button>
+
+  <button
+    (click)="onSetValue()"
+  >
+    Set value
+  </button>
+</div>
