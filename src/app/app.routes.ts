@@ -8,6 +8,7 @@ import { Step8SimpleDataTableShow } from './components/step8-simple-data-table-s
 import { Step9ComponentOutput } from './components/step9-component-output/step9-component-output';
 import { Step10TemplateDrivenForms } from './components/step10-template-driven-forms/step10-template-driven-forms';
 import { Step11ReactiveForms } from './components/step11-reactive-forms/step11-reactive-forms';
+import { Step12HttpClientService } from './components/step12-http-client-service/step12-http-client-service';
 
 export const routes: Routes = [
   {path:'person-table-example', component:Step2PersonTable},
@@ -18,6 +19,7 @@ export const routes: Routes = [
   {path: 'component-output', component: Step9ComponentOutput},
   {path:'template-driven-form-example',component: Step10TemplateDrivenForms},
   {path:'reactive-form-example', component:Step11ReactiveForms},
+  {path:'http-client-example', component: Step12HttpClientService},
   {path:'welcome', component:Step6Welcome},
   {path:'', redirectTo:'/welcome', pathMatch:'full'}
 ];
