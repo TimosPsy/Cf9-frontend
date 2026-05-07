@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -8,7 +8,7 @@ import {
 import {jwtDecode} from 'jwt-decode'; 
 import { Credentials, LoggedInUser } from '../../shared/interfaces/user-login.interface';
 import { UserService } from '../../shared/services/user.service';
-// import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 // import { GoogleService } from '../../shared/services/google.service';
 
 
@@ -21,13 +21,26 @@ import { UserService } from '../../shared/services/user.service';
 export class Step13UserLogin {
 
   userService = inject(UserService);
-
-  //user = this.userService.user;
+  router = inject(Router);
+  
+  user = this.userService.user;
 
   form  = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
+
+  constructor() {
+    // Reset form if logout happens while staying on this page.
+    effect(() => {
+      if (!this.userService.user()) {
+        this.form.reset({
+          username: '',
+          password: ''
+        });
+      }
+    });
+  }
 
   onSubmit(){
     console.log(this.form.value);
@@ -43,8 +56,8 @@ export class Step13UserLogin {
            username: decodedToken.username,
            email: decodedToken.email,
            roles: decodedToken.roles
-        })
-        //this.router.navigate(['restricted-content']);
+        });
+        this.router.navigate(['restricted-content']);
       },
       error: (error) => {
         console.log(error);
