@@ -1,0 +1,89 @@
+<div>
+  <h4>Create User</h4>
+
+  <form [formGroup]="form" class="d-flex flex-column">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput type="text" formControlName="username">
+      <mat-error>Username is required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" formControlName="firstname">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" formControlName="lastname">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email">
+      <mat-error>Email is invalid</mat-error>
+    </mat-form-field>
+
+    <div class="d-flex flex-column" formGroupName="address">
+      <mat-form-field>
+        <mat-label>Area</mat-label>
+        <input matInput type="text" formControlName="area">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Street</mat-label>
+        <input matInput type="text" formControlName="street">
+      </mat-form-field>
+    </div>
+
+    <div formArrayName="phone">
+      @for (p of phone.controls; let i=$index; track i) {
+      <div [formGroupName]="i" class="d-flex gap-3 align-items-center">
+        <mat-form-field>
+          <mat-label>Phone Number</mat-label>
+          <input matInput type="text" formControlName="number">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            <mat-option value="mobile">Mobile</mat-option>
+            <mat-option value="home">Home</mat-option>
+            <mat-option value="work">Work</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-icon role="button" class="cursor-pointer">delete</mat-icon>
+        <mat-icon role="button" class="cursor-pointer">add</mat-icon>
+      </div>
+      }
+    </div>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="text" formControlName="password">
+      <mat-error>Password is missing or invalid</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="text" formControlName="confirmPassword">
+      <mat-error>Passwords do not match</mat-error>
+    </mat-form-field>
+
+  </form>
+  <div class="d-flex gap-2">
+    <button 
+      mat-raised-button 
+      color="primary"
+      (click)="onSubmit()"
+      >Submit
+    </button>
+
+    <button 
+      mat-raised-button 
+      color="warn"
+      >Reset
+    </button>
+  </div>
+</div>

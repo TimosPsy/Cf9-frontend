@@ -8,7 +8,7 @@ export const readerRoleGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   const userRoles: IRole[] | undefined = userService.user()?.roles;
-  const hasPermission = userRoles?.some((r:IRole) => {r.role ==="READER" && r.active});
+  const hasPermission = userRoles?.some((r:IRole) => r.role ==="READER" && r.active);
   if (userService.user() && hasPermission) {
     return true;
   }
