@@ -2,10 +2,10 @@ import { Injectable, inject, signal } from '@angular/core';
 import { GoogleClientId } from '../config';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
 import { environment } from '../../../environments/environment';
 import { IGoogleUser } from '../interfaces/google-user.interface';
 import { UserService } from './user.service';
+import { jwtDecode } from 'jwt-decode';
 
 const API_AUTH_URL = `${environment.apiURL}/api/auth/google-auth`;
 
@@ -34,16 +34,24 @@ export class GoogleService {
 
   handleCredentials(response: any) {
     console.log(response);
-    const idToken = response.credentials;
+    const idToken = response.credential;
     this.loginGoogle(idToken).subscribe({
       next: (res) => {
-        console.log(res)
+        //console.log(res)
+        const decodedToken = jwtDecode(res.token) as IGoogleUser;
+        console.log(decodedToken);
+        localStorage.setItem('google-access-token', res.token);
+        this.userService.user.set({
+          username: decodedToken.name,
+          email: decodedToken.email,
+          roles: decodedToken.roles
+        })
       },
       error: (err) => console.log("Problem with google login", err)
     });
   }
 
   loginGoogle(token: string) {
-    return this.http.post<{token: string}>(`$($API_AUTH_URL)`,{token})
+    return this.http.post<{ token: string }>(`${API_AUTH_URL}`, { token });
   }
 }
